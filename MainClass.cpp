@@ -76,7 +76,7 @@ public:
 };
 
 bool MyApp::OnInit() {
-    MainFrame* frame = new MainFrame("GCalculator");
+    MainFrame* frame = new MainFrame("GCashier");
     frame->Show(true);
     return true;
 }

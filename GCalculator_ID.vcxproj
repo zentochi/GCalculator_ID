@@ -24,6 +24,7 @@
     <ProjectGuid>{2778326e-b0d4-41e9-977d-7b02a1e029b8}</ProjectGuid>
     <RootNamespace>GCalculatorID</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>GCashier_ID</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
