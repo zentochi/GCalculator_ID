@@ -1,11 +1,11 @@
-#include <wx/wx.h>
-#include <iostream>
-#include <string>
+#include <wx/wx.h>      // Import all widget library
+#include <iostream>     // Import default
+#include <string>       // c++ library
 using namespace std;
 
 const int MONEY_VALUES[] = { 100, 50, 20, 10, 5, 2, 1 }; // values of money in ribu rupiah
 const int NUM_MONEY = 7; // number of money types
-
+// Inheritance wxFrame into MainFrame
 class MainFrame : public wxFrame {
 public:
     MainFrame(const wxString& title);
@@ -15,9 +15,9 @@ private:
     wxTextCtrl* input, * output;
     int ChangeCoins(int amount, int count[]);
 };
-
-MainFrame::MainFrame(const wxString& title)
-    : wxFrame(NULL, wxID_ANY, title, wxPoint(50, 50), wxSize(500, 300)) {
+// Customize MainFrame box, size and position
+MainFrame::MainFrame(const wxString& title):
+    wxFrame(NULL, wxID_ANY, title, wxPoint(50, 50), wxSize(500, 300)) {
     wxPanel* panel = new wxPanel(this, -1);
     wxBoxSizer* vbox = new wxBoxSizer(wxVERTICAL);
     wxBoxSizer* hbox1 = new wxBoxSizer(wxHORIZONTAL);
@@ -30,8 +30,8 @@ MainFrame::MainFrame(const wxString& title)
     wxStaticText* st2 = new wxStaticText(panel, -1, "Nilai Tukar:", wxPoint(10, 50),
         wxSize(150, 25));
     output = new wxTextCtrl(panel, -1, "", wxPoint(160, 50), wxSize(150, 25),
-        wxTE_MULTILINE | wxTE_READONLY);
-
+        wxTE_MULTILINE | wxTE_READONLY);    // wxDialog style
+    // Mouse button event trigger dynamic
     wxButton* compute =
         new wxButton(panel, wxID_EXIT, "Hitung", wxPoint(160, 90), wxSize(75, 30));
     Connect(wxID_EXIT, wxEVT_COMMAND_BUTTON_CLICKED,
@@ -47,7 +47,7 @@ MainFrame::MainFrame(const wxString& title)
     panel->SetSizer(vbox);
     Centre();
 }
-
+// Core Greedy Code
 int MainFrame::ChangeCoins(int amount, int count[]) {
     int result = 0;
     for (int i = 0; i < NUM_MONEY; i++) {
@@ -57,7 +57,7 @@ int MainFrame::ChangeCoins(int amount, int count[]) {
     }
     return result;
 }
-
+// User input setter and getter Code
 void MainFrame::OnCompute(wxCommandEvent& event) {
     long amount = 0;
     input->GetValue().ToLong(&amount);
@@ -69,16 +69,16 @@ void MainFrame::OnCompute(wxCommandEvent& event) {
     }
     output->AppendText(wxString::Format("Total: %d lembar", totalCoins));
 }
-
+// Event handler
 class MyApp : public wxApp {
 public:
     virtual bool OnInit();
 };
 
 bool MyApp::OnInit() {
-    MainFrame* frame = new MainFrame("GCashier");
-    frame->Show(true);
-    return true;
+    MainFrame* frame = new MainFrame("GCashier");   // Title name setter
+    frame->Show(true);                              // Show All inside MainFrame
+    return true;                                    // true -> opened vice versa
 }
 
-wxIMPLEMENT_APP(MyApp);
+wxIMPLEMENT_APP(MyApp);                             // macro event sehingga berjalan nonstop hingga return false
